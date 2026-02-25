@@ -1,0 +1,26 @@
+name: Daily Repository Update
+
+on:
+  schedule:
+    - cron: '15 4 * * *'   # Runs daily at 04:15 UTC
+  workflow_dispatch:
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 25ds1000107@ds.study.iitm.ac.in - Create update
+        run: |
+          echo "Updated on $(date -u)" >> daily-log.txt
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "Auto Bot"
+          git config --global user.email "25ds1000107@ds.study.iitm.ac.in"
+          git add daily-log.txt
+          git commit -m "Daily auto update $(date -u)" || echo "No changes"
+          git push
