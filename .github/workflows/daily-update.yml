@@ -14,10 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 25ds1000107@ds.study.iitm.ac.in - Create update
-        run: |
-          echo "Updated on $(date -u)" >> daily-log.txt
+        run: echo "Updated on $(date -u)" >> daily-log.txt
 
-            - name: Commit changes
+      - name: Commit changes
         run: |
           git config user.name "Auto Bot"
           git config user.email "25ds1000107@ds.study.iitm.ac.in"
